@@ -1,10 +1,10 @@
 <h1 align="center">SQL-LOGIN PAGE</h1>
 
 <p align="center">
-  <img src="orn1.png" alt="Proje Resmi" width="200">
+  <img src="orn1.png" alt="Proje Resmi" width="500">
 </p>
 <p align="center">
-  <img src="orn2.png" alt="Proje Resmi" width="200">
+  <img src="orn2.png" alt="Proje Resmi" width="500">
 </p>
 
 <p align="center">
