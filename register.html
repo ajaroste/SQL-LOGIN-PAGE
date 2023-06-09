@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Sayfası</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #f5f5f5;
+    }
+
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("2.jpg");
+      background-size: cover;
+      background-position: center;
+      animation: slideBackground 0s linear infinite;
+    }
+
+    @keyframes slideBackground {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .login-form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      animation: fadeInForm 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeInForm {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .login-form h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="login-form">
+    <h1>Giriş Yap</h1>
+    <form>
+      <div class="form-group">
+        <label for="email">E-posta Adresi:</label>
+        <input type="text" id="email" class="form-control" name="email"  placeholder="E-posta Adresi girin" class="text-deger" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Username:</label>
+        
+        <input type="text" id="username" class="form-control" name="username"  placeholder="Adınızı girin" class="text-deger" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Şifre:</label>
+        <input type="text" class="form-control" id="password" name="password"  placeholder="Şifrenizi girin" class="text-deger" required>
+      </div>
+      <div class="form-group">
+      <label for="text" id="message"></label>
+      <input type="submit" class="btn btn-danger btn-block" value="KAYDOL" >
+      <input type="submit" id="loginButton" class="button btn-primary btn-block" value="Giriş Yap" >
+    </div>
+    </form>
+  </div>
+  <div id="message"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var loginButton = document.getElementById('loginButton');
+      loginButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = 'http://localhost:8080/login';
+      });
+
+      const form = document.querySelector('form');
+      const messageDiv = document.getElementById('message');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `email=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+        });
+
+        const message = await response.text();
+
+        messageDiv.textContent = message;
+        console.log(username + password + email);
+      });
+    });
+  </script>
+
+
+
+</body>
+</html>
+
+
+
+
+

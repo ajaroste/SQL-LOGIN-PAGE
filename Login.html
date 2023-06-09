@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Sayfası</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #f5f5f5;
+    }
+
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("2.jpg");
+      background-size: cover;
+      background-position: center;
+      animation: slideBackground 0s linear infinite;
+    }
+
+    @keyframes slideBackground {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .login-form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      animation: fadeInForm 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeInForm {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .login-form h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="login-form">
+    <h1>Giriş Yap</h1>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">E-posta Adresi</label>
+        <input type="email" class="form-control" id="email" placeholder="E-posta adresinizi girin" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Şifre</label>
+        
+        <input type="password" class="form-control" id="password" placeholder="Şifrenizi girin" required>
+      </div>
+      <label for="text" id="message"></label>
+      <input type="submit" class="btn btn-primary btn-block" id="loginButton" value="GİRİŞ YAP" >
+    </form>
+  </div>
+
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('loginForm');
+      const messageDiv = document.getElementById('message');
+      const loginButton = document.getElementById('loginButton');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        });
+
+        const message = await response.text();
+        messageDiv.textContent = message;
+
+        if (response.status === 200 && message === 'Giriş başarılı,Admin sayfasına erişmek için Tıkla:') {
+          const username = email;
+          const link = document.createElement('a');
+          link.href = `/user/${username}`;
+          link.textContent = 'GİRİŞ';
+          messageDiv.appendChild(document.createElement('br'));
+          messageDiv.appendChild(link);
+          loginButton.style.display = 'none';
+        }
+      });
+    });
+  </script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('form');
+      const messageDiv = document.getElementById('message');
+  
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+  
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+  
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        });
+  
+        const message = await response.text();
+        messageDiv.textContent = message;
+  
+        if (response.status === 200 && message === 'Giriş başarılı,Admin sayfasına erişmek için Tıkla:') {
+          const username = email;
+          const button = document.createElement('button');
+          button.textContent = 'GİRİŞ';
+          button.classList ='btn btn-primary btn-block';
+          button.addEventListener('click', () => {
+            window.location.href = `/user/${username}`;
+          });
+          messageDiv.appendChild(document.createElement('br'));
+          messageDiv.appendChild(button);
+  
+          loginButton.style.display = 'none';
+        }
+      });
+    });
+  </script>
+  
+

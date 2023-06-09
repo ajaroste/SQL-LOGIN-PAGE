@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Page</title>
+  <style>
+    .loader {
+      width: 80px;
+      height: 80px;
+      border: 8px solid #00aaf8; /* Yüklenme dairelerinin rengi ve kalınlığı */
+      border-top: 8px solid #d6d6d6; /* Yüklenme dairelerinin üst çizgisinin rengi */
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 50px auto;
+    }
+    .page{
+      display: none;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(1deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+    <div class="loader"></div>
+<div class="page">
+    <h1>Admin Sayfası</h1>
+    <p>Merhaba, <span id="username"></span>!</p>
+</div>
+  <script>
+    const username = window.location.pathname.split('/').pop();
+    document.getElementById('username').textContent = username;
+    
+    // Yükleme animasyonunu gizlemek için, sayfa tamamen yüklendikten sonra loader'ı kaldırabilirsiniz.
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+       
+        const page = document.querySelector('.page');
+        page.style.display = 'block';
+        const loader = document.querySelector('.loader');
+        loader.style.display = 'none';
+      }, 5000); // 1000 milisaniye (1 saniye) gecikme
+    });
+  </script>
+</body>
+</html>
