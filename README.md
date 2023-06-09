@@ -25,7 +25,7 @@ Aşağıdaki yazılımların yüklü olması gerekmektedir:
 
 ### 📥 Kurulum
 
-<span><span style="color: blueviolet; font-weight: bold;">1.</span><span style=" font-weight: bold; font-size: 24px; color: white;" > Bu repository'i klonlayın:bash</span><br>
+<span><span style="color: blueviolet; font-weight: bold;">1.</span><span style=" font-weight: bold; font-size: 24px; color: white;" > Bu repository'i klonlayın veya indirin</span><br>
 <span><span style="color: blueviolet; font-weight: bold;">2.</span><span style=" font-weight: bold; font-size: 24px; color: white;" > cd SQL-LOGIN-PAGE</span><br>
 <span><span style="color: blueviolet; font-weight: bold;">3.</span><span style=" font-weight: bold; font-size: 24px; color: white;" > MSSQL kurulumunu yapalım ."system administrator(sa) şifresini 12 yapalım bu şifre işlemi services.bat dosyasının kurulum işlemini kolaylaştırır")</span><br>
 <span><span style="color: blueviolet; font-weight: bold;">4.</span><span style=" font-weight: bold; font-size: 24px; color: white;" > sql kurulumundan sonra Nativ client ve Configuration Manager ayarları yapılmalıdır.</span><br>
